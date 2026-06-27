@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تسجيل دخول - Star House</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+       .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 450px;
+            width: 100%;
+        }
+        h1 { color: #1f2937; margin-bottom: 30px; text-align: center; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        input:focus { outline: none; border-color: #3b82f6; }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background: #2563eb; }
+       .divider {
+            text-align: center;
+            margin: 25px 0;
+            color: #6b7280;
+            position: relative;
+        }
+       .divider::before,.divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #e5e7eb;
+        }
+       .divider::before { right: 0; }
+       .divider::after { left: 0; }
+       .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            background: white;
+            color: #3c4043;
+            text-decoration: none;
+            border: 2px solid #dadce0;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+       .google-btn:hover { background: #f8f9fa; border-color: #c6c6c6; }
+       .google-btn img { width: 18px; }
+       .link { text-align: center; margin-top: 20px; color: #6b7280; }
+       .link a { color: #3b82f6; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>تسجيل دخول</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div style="padding: 12px; margin-bottom: 15px; border-radius: 8px; text-align: center;
+                        {% if category == 'success' %}background: #d1fae5; color: #065f46;{% else %}background: #fee2e2; color: #991b1b;{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST">
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <input type="password" name="password" placeholder="كلمة السر" required>
+            <button type="submit">دخول</button>
+        </form>
+        
+        <div class="divider">أو</div>
+        
+        <a href="/login/google" class="google-btn">
+            <img src="https://www.google.com/favicon.ico" alt="Google">
+            المتابعة بحساب جوجل
+        </a>
+        
+        <div class="link">
+            معندكش حساب؟ <a href="/register">إنشاء حساب</a>
+        </div>
+    </div>
+</body>
+</html>
