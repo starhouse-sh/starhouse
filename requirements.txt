@@ -1,0 +1,7 @@
+flask
+flask-login
+flask-dance
+werkzeug
+pillow
+gunicorn
+flask-sqlalchemy
